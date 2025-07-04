@@ -1,0 +1,28 @@
+
+$ python3 -m venv environment_name
+$ source environment_name/bin/activate
+$ pip install Django
+$ pip list            [to see installed package]
+$ django-admin startproject project_name .   [. indicate we want to create it current folder]
+$ python manage.py runserver         [to check project run in server or not]
+$ django-admin startapp app_name
+
+
+
+# To protable virtual_environment do below things
+
+$ pip freeze > requirements.txt
+
+# Either delete venv folder create freshly then activate then install requirements.txt
+# Otherwise you can just active venv then install requirements.txt after you can run that project without error
+# To do that
+
+$ source environment_name/bin/activate
+$ pip install -r requirements.txt
+
+
+
+# vscode environment releated issue:
+solution: 
+    Ctrl + Shift + p
+    >Select interpreter [choose your desire one]
