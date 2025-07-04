@@ -24,3 +24,11 @@ def contact(request):
 
 def show_task(request):
     return HttpResponse("This is our task page")
+
+
+# dynamic urls: <id> must similar  <name>
+# def show_specific_task(request, name):
+def show_specific_task(request, id):
+    print("id",id)
+    print("id type", type(id))
+    return HttpResponse(f"This is specific task page {id}")
