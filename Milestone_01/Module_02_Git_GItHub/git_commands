@@ -1,0 +1,127 @@
+# Show all command
+------------------------------------------------------------------------------
+$ git -h
+
+
+
+# git version checking 
+------------------------------------------------------------------------------
+$ git --version
+$ git -v
+
+
+# assigning global user and email 
+------------------------------------------------------------------------------
+$ git config --global user.name "siyam-hossain"                         [github: username: one time use only]
+$ git config --global user.email "siyam.cybersoul@gmail.com"            [github: email: one time use only]
+    
+
+# actual commands
+------------------------------------------------------------------------------
+$ git init
+
+
+# to ignore file and folder
+------------------------------------------------------------------------------
+1. create .gitignore file at root directory
+2. folder_name/                                     [to ignore folder / must]
+3. file.extension                                   [to ignore file]
+4. git rm --cached file_name.extension              [remove from stage area: if file in inner-directory then path require]
+
+
+
+# Working directory ---> Git Staging Area
+
+$ git add .                                         [to add all file] 
+$ git add filename                                  [specific file, file extension require]
+$ git add filename filename filename                [multiple file, file extension require]
+
+$ git status                                        [to see staging]
+
+
+# Git Staging Area ---> Repository
+
+$ git commit -m "commit message"
+
+
+
+# to see commit history
+------------------------------------------------------------------------------
+$ git log                                           [detail history]
+$ git log --oneline                                 [minimal history: provide a commit id: 3751a74]
+
+
+
+
+# Repository
+------------------------------------------------------------------------------
+$ git branch -M main
+$ git remote add origin origin_path_from_github     [can collect from repository code dropdown menu : only one time use]
+$ git push origin master 
+or
+$ git push -u origin main    
+
+
+
+
+# Git branching [helps to create a project blue-print and work on it]
+------------------------------------------------------------------------------
+$ git branch branch_name                            [to create new branch]
+$ git branch                                        [show existing branch]
+$ git checkout branch_name                          [to switch that branch (*) mark appear that branch: means in use]
+$ git add .                                         [newly created brach: if all work done]
+$ git commit -m "commit message"                    [othewise all feature lost while you checkout main]
+$ git merge branch_name                             [at main branch to merge other branch]
+$ git push origin main                              [at main branch to reflect the other branch]
+
+
+
+# Git clone
+------------------------------------------------------------------------------
+1. Fork that repository
+$ git clone repository link                         [ssh,https which ever format you have]
+$ git checkout -b new_branch_name                   [create branch and auto checkout: for who clone that project]
+$ git add .
+$ git commit -m "commit message"
+$ git push origin new_branch_name                   [push his own branch]
+
+## compare and pull request                         [inorder to merge request to main branch (check any conflict issue)]
+## now main branch owner go to pull request section [to check pull request and changes]
+## click merge pull request                         [to confirm merge request]
+
+
+# Git pull  (to get updated repository)
+------------------------------------------------------------------------------
+$ git pull                                          [if it gives error read and fix or try this: git merge --no-ff]
+$ git push origin main
+
+
+
+
+
+# Going Back to a specific commit (Dangerous Event)
+------------------------------------------------------------------------------
+$ git checkout  branch_id                           [go to that branch level]
+$ git checkout -b temp-branch                       [to change its previous branch name]
+$ git restore --source=temp-branch .                [to restore all]
+$ git restore --source=temp-branch file1 file2      [to restore specific file]
+$ git add .
+$ git commit -m "resote to previous commit version"
+$ push origin main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
