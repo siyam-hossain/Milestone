@@ -1,0 +1,19 @@
+{% comment %} load static {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    {% comment %} using static css {% endcomment %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+</head>
+<body>
+    <p class="lal-bg">Test</p>
+    <img src="{% static "images/bird.jpg" %}" alt="">
+</body>
+</html>

@@ -2,19 +2,20 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+'''
 def home(request):
-    return HttpResponse("Welcome to the task management system")
+    # render(request, "templates") : it knows the directory of templates because of settings.py TEMPLATES = []
+    # return render(request,"home.html")
+    return HttpResponse("Home")
+'''
+
+def manager_dashboard(request):
+    return render(request, "dashboard/manager-dashboard.html")
 
 
-def contact(request):
-    return HttpResponse("<h1 style='color: purple'>This is contact page</h1>")
+def user_dashboard(request):
+    # dashboard is a folder at templates
+    return render(request, "dashboard/user-dashboard.html")
 
-
-def show_task(request):
-    return HttpResponse("This is our task page")
-
-
-def show_specific_task(request, id):
-    print("id",id)
-    print("id type", type(id))
-    return HttpResponse(f"This is specific task page {id}")
+def test(request):
+    return render(request,"test.html")
