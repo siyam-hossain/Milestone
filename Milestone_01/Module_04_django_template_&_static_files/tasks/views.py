@@ -18,4 +18,9 @@ def user_dashboard(request):
     return render(request, "dashboard/user-dashboard.html")
 
 def test(request):
-    return render(request,"test.html")
+    # module 4.5: context in Django
+    context = {
+        "names": ["Mahmud", "Siyam","Hossain"],
+        "age": 20,
+    }
+    return render(request,"test.html",context)
