@@ -1,0 +1,40 @@
+{% comment %} load static {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    {% comment %} using static css {% endcomment %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+</head>
+<body>
+    <p class="lal-bg">Test</p>
+    <img src="{% static "images/bird.jpg" %}" alt="">
+
+    {% comment %} module 4.5: django variable: variable name must same to key value of dictionary {% endcomment %}
+    {{names}}
+    <p class="lal-bg">
+        {{age}}
+    </p>
+
+    {% with count=0 %}
+
+        {% for name in names %}
+            {% if not name == 'John' %}
+                <p>{{name}}</p>
+            {% endif %}
+
+            {{ count|add:1 }}
+
+        {% endfor %}
+
+        
+    {% endwith %}
+        {{count}}
+</body>
+</html>
