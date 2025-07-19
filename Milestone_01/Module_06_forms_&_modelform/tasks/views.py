@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # module-6
-from tasks.forms import TaskForm, TaskModelForm
-from tasks.models import Employee,Task
+from tasks.forms import TaskForm
+# 
+from tasks.models import Employee,Task,Project
 
 def manager_dashboard(request):
     return render(request, "dashboard/manager-dashboard.html")
@@ -24,51 +25,121 @@ def test(request):
 
 
 # module-6
-# def create_task(request):
-#     employees = Employee.objects.all()
-#     form = TaskForm(employees = employees) #by default for GET
-    
-#     if request.method == "POST":
-#         form = TaskForm(request.POST,employees = employees)
-#         # print(form)
-#         if form.is_valid():
-#             # print(form.cleaned_data)
-#             data = form.cleaned_data
-#             title = data.get('title')
-#             description = data.get('description')
-#             due_date = data.get('due_date')
-#             assigned_to = data.get('assigned_to')
-            
-#             task = Task.objects.create(title = title, description=description, due_date = due_date)
-            
-#             # assign employee to tasks
-#             for emp_id in assigned_to:
-#                 emp = Employee.objects.get(id = emp_id)
-#                 task.assign_to.add(emp)
-            
-#             return HttpResponse("Task Added Successfully")
-        
-#     context = {"form":form}
-#     return render(request, "task_form.html", context)
 
 
-
-# for model form
-
+# for form
 def create_task(request):
+    # fetch data form database insted of shell command
     employees = Employee.objects.all()
-    form = TaskModelForm() 
     
+    
+    # create a form
+    # form = TaskForm()
+    
+    # forwording form with dictionary : static way
+    # form = TaskForm(
+    #     employees = {
+    #         "name":"John",
+    #         "id": 1
+    #     } 
+    # )
+    
+    
+    # forwording form with dictionary : dynamic way
+    form = TaskForm(
+        employees = employees
+    ) # for GET
+    
+    # working with post request: 6.3 M
+    if request.method == "POST":
+        form = TaskForm(
+            request.POST,
+            employees = employees
+        )
+        # print(form) # unclean data  
+        if form.is_valid():
+            # print(form.cleaned_data) # clean data
+            # let's create entry data and extract data from form
+            data = form.cleaned_data
+            # print(data)
+
+            
+            title = data.get('title')
+            description = data.get('description')
+            due_date = data.get('due_date')
+            assigned_to = data.get('assigned_to')
+            
+            task = Task.objects.create(
+                title = title, 
+                description = description, 
+                due_date = due_date
+            )
+            
+            # Assign employee to tasks
+            for emp_id in assigned_to:
+                employee = Employee.objects.get(id = emp_id) 
+                task.assigned_to.add(employee)
+            
+            # confirmation
+            return HttpResponse("Task Added sccessfull")
+    
+    
+    
+    # context work as a dictionary
+    context = {"form": form}
+    return render(
+        request, 
+        "task_form.html",
+        context
+    )
+
+
+
+# for Model Form
+# import here
+from tasks.forms import TaskModelForm
+
+def create_Model_task(request):
+
+    # employees = Employee.objects.all()
+    
+    form = TaskModelForm()
     
     if request.method == "POST":
-        form = TaskModelForm(request.POST)
+        form = TaskModelForm(
+            request.POST
+        )
 
         if form.is_valid():
-            print(form)
             form.save()
             
+            # confirmation message at same page
+            return render(
+                request,
+                'task_form.html',
+                {
+                    "form":form,
+                    "message":"task added successfully :)"
+                }
+            )
             
-            return HttpResponse("Task Added Successfully")
-        
-    context = {"form":form}
-    return render(request, "task_form.html", context)
+    
+    context = {"form": form}
+    return render(
+        request, 
+        "task_form.html",
+        context
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+

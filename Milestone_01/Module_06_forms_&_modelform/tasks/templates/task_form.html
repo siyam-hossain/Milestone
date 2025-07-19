@@ -6,31 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    {% comment %} tailwind css {% endcomment %}
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+
 </head>
 <body>
-    <div class="">
-        {% comment %} <div>
-            {% if message %}
-                <p>{{message}}</p>
-            {% endif %}
-        </div> {% endcomment %}
-
-        {% comment %} <form method="POST">
-            {% csrf_token %}
-            <label for="">Title</label>
-            <input type="text" name="title">
-            <label for="">Number</label>
-            <input type="text" name="Number">
-            <button type="submit">Submit</button>
-        </form>  {% endcomment %}
+    {% comment %} GET request: remain in browsing history {% endcomment %}
+    <br><br>
+    <form action="" method ="GET">
+        <b>GET REQUEST</b>
         <br>
-        
-        <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Submit</button>
-        </form>
+        <label for="">Title</label>
+        <input type="text" name="title">
+        <label for="">Number</label>
+        <input type="number" name="number">
+        <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    <hr>
 
+
+    {% comment %} POST request: for secure browsing request {% endcomment %}
+    <br><br>
+    <form action="" method ="POST">
+        <b>POST REQUEST</b>
+        <br>
+        {% csrf_token %} {% comment %}Forbidden: CSRF verificaition failed: FIX{% endcomment %}
+        <label for="">Title</label>
+        <input type="text" name="title">
+        <label for="">Number</label>
+        <input type="number" name="number">
+        <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    <hr>
+    
+
+
+
+
+    {% comment %} creating form from forms.py  {% endcomment %}
+    <br><br>
+    <div>
+        {% if message %}
+            <p>
+                {{message}}
+            </p>
+        {% endif %}
     </div>
+    <form action="" method ="POST">
+        <b>From: form.py REQUEST</b>
+        <br>
+        {% csrf_token %} 
+        {% comment %} taking as a variable {% endcomment %}
+         {% comment %} .as_p : refers p tag {% endcomment %}
+        {{form.as_p}} 
+        <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    <hr>
+
+
+
+
+
+
 </body>
 </html>
