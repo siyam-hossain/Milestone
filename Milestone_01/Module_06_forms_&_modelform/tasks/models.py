@@ -8,7 +8,9 @@ class Employee(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     
-    def __str__(self):
+    # dunder method or magic method in Python.
+    # __str__ : string representation
+    def __str__(self): 
         return self.name
     
 
@@ -26,7 +28,7 @@ class Task(models.Model):
     )
     
     # many to many
-    assigned_to = models.ManyToManyField(Employee)
+    assigned_to = models.ManyToManyField(Employee, related_name='tasks')
     
     
     
