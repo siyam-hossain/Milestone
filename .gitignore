@@ -5,3 +5,4 @@ task_env/
 __pycache__/
 db.sqlite3
 Milestone_01/Module_02/file.txt
+node_modules/
