@@ -7,7 +7,7 @@
     <title>Document</title>
 
     {% comment %} tailwind css {% endcomment %}
-    <link rel="stylesheet" href="{% static "css/output.css" %}">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
 
 </head>
 <body>
@@ -47,22 +47,29 @@
 
     {% comment %} creating form from forms.py  {% endcomment %}
     <br><br>
-    <div>
+
+    <div class="p-4 w-1/2 mx-auto mt-8">
+
+        <div>
         {% if message %}
             <p>
                 {{message}}
             </p>
         {% endif %}
+        </div>
+
+        <form action="" method ="POST" class="space-y-4 w-full">
+            <b>From: form.py REQUEST</b>
+            <br>
+            {% csrf_token %} 
+            {% comment %} taking as a variable {% endcomment %}
+            {% comment %} .as_p : refers p tag {% endcomment %}
+            {{form.as_p}} 
+            <button type="submit" class="bg-rose-600 px-3 py-1 mt-2 rounded-lg text-white font-semibold">Submit</button>
+        </form>
+
     </div>
-    <form action="" method ="POST">
-        <b>From: form.py REQUEST</b>
-        <br>
-        {% csrf_token %} 
-        {% comment %} taking as a variable {% endcomment %}
-         {% comment %} .as_p : refers p tag {% endcomment %}
-        {{form.as_p}} 
-        <button type="submit">Submit</button>
-    </form>
+   
     <br><br>
     <hr>
 
